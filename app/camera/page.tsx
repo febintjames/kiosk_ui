@@ -75,6 +75,7 @@ export default function Camera() {
       canvasRef.current.toBlob((blob) => {
         if (blob) {
           const imageData = URL.createObjectURL(blob);
+          console.log('Captured image data:', imageData);
           setUploadedImage(imageData);
           stopCamera();
           router.push('/voice');
