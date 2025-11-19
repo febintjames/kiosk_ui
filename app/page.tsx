@@ -1,6 +1,14 @@
-import Image from "next/image";
+'use client';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+
+  const router = useRouter();
+
+  const handleNav = () => {
+    router.push('/details');
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-emerald-600 via-black to-red-600 font-sans">
       <main className="flex min-h-screen w-full flex-col items-center justify-center px-16 py-32">
@@ -25,7 +33,7 @@ export default function Home() {
           </p>
 
           {/* Primary Button */}
-          <button className="px-16 py-6 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-2xl font-bold rounded-full uppercase tracking-wider hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-emerald-600/60">
+          <button onClick={handleNav} className="px-16 py-6 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-2xl font-bold rounded-full uppercase tracking-wider hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-emerald-600/60">
             Start Experience
           </button>
         </div>
