@@ -81,6 +81,16 @@ export default function Camera() {
           router.push('/voice');
         }
       }, 'image/jpeg', 0.95);
+
+      const base64Image = canvasRef.current.toDataURL('image/jpeg', 0.95);
+
+      sessionStorage.setItem('capturedPhoto', base64Image);
+      sessionStorage.setItem('photoMetadata', JSON.stringify({
+        size: base64Image.length,
+        type: 'image/jpeg',
+        capturedAt: new Date().toISOString()
+      }));
+      
     } catch (err) {
       console.error('Photo capture error:', err);
       setError('Failed to capture photo. Please try again.');
