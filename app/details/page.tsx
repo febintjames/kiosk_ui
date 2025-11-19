@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useKioskStore } from '@/app/store/kioskStore';
 
 export default function Details() {
   const router = useRouter();
+  const { setUserDetails } = useKioskStore();
+  
   const [formData, setFormData] = useState({
     fullName: '',
     whatsappNumber: '',
@@ -50,10 +53,14 @@ export default function Details() {
 
   const handleNext = () => {
     if (validateForm()) {
-      // Store form data in session/context if needed
-      localStorage.setItem('userDetails', JSON.stringify(formData));
+      // Save to Zustand store
+      setUserDetails(formData);
       router.push('/camera');
     }
+  };
+
+  const handleBack = () => {
+    router.back();
   };
 
   return (
@@ -131,13 +138,21 @@ export default function Details() {
             <p className="text-red-500 text-sm mb-6">{errors.consent}</p>
           )}
 
-          {/* Next Button */}
-          <button
-            onClick={handleNext}
-            className="w-full px-8 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-xl font-bold rounded-full uppercase tracking-wider hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-emerald-600/60"
-          >
-            Next
-          </button>
+          {/* Button Group */}
+          <div className="flex gap-4">
+            <button
+              onClick={handleBack}
+              className="flex-1 px-8 py-4 bg-gray-600 hover:bg-gray-700 text-white text-lg font-bold rounded-full uppercase tracking-wider transition-all duration-300 shadow-lg"
+            >
+              Back
+            </button>
+            <button
+              onClick={handleNext}
+              className="flex-1 px-8 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-lg font-bold rounded-full uppercase tracking-wider hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-emerald-600/60"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
