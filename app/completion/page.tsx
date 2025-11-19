@@ -122,33 +122,6 @@ export default function Completion() {
             </p>
           </div>
 
-          {/* Video Link Section */}
-          <div className="bg-gray-50 border-2 border-gray-300 rounded-lg px-6 py-4 mb-10">
-            <p className="text-sm text-gray-600 mb-3">Your Video Link:</p>
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={videoLink}
-                readOnly
-                className="flex-1 px-3 py-2 bg-white border border-gray-300 rounded text-sm text-gray-700 focus:outline-none"
-              />
-              <button
-                onClick={handleCopyLink}
-                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-semibold rounded transition-colors"
-              >
-                Copy
-              </button>
-            </div>
-          </div>
-
-          {/* Success Tips */}
-          <div className="bg-blue-50 border-l-4 border-blue-600 px-6 py-4 mb-12 text-left">
-            <p className="text-blue-900 font-semibold mb-2">💡 Tip:</p>
-            <p className="text-blue-800 text-sm leading-relaxed">
-              Check your WhatsApp for the video link. You can share it on social media to celebrate this special moment! Share your personalized anthem with your family and friends.
-            </p>
-          </div>
-
           {/* Action Buttons */}
           <div className="flex flex-col gap-4">
             {/* Share on WhatsApp Button */}

@@ -77,7 +77,7 @@ export default function Camera() {
           const imageData = URL.createObjectURL(blob);
           setUploadedImage(imageData);
           stopCamera();
-          router.push('/recording');
+          router.push('/voice');
         }
       }, 'image/jpeg', 0.95);
     } catch (err) {
