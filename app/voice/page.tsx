@@ -80,8 +80,35 @@ export default function VoiceRecorder() {
       mediaRecorder.onstop = () => {
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
         const audioUrl = URL.createObjectURL(audioBlob);
-        setUploadedVoice(audioUrl);
-        setRecordingState('completed');
+
+        // Convert blob to base64 string
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64Audio = reader.result as string;
+
+          // DEBUG: Log captured audio
+          console.log('🎤 Audio Captured:', {
+            size: base64Audio.length,
+            type: 'audio/wav',
+            blobSize: audioBlob.size,
+            duration: recordingTime,
+            fullBase64: base64Audio,
+            timestamp: new Date().toISOString()
+          });
+
+          sessionStorage.setItem('capturedAudio', base64Audio);
+          sessionStorage.setItem('audioMetadata', JSON.stringify({
+            size: base64Audio.length,
+            type: 'audio/wav',
+            blobSize: audioBlob.size,
+            duration: recordingTime,
+            capturedAt: new Date().toISOString()
+          }));
+
+          setUploadedVoice(audioUrl);
+          setRecordingState('completed');
+        };
+        reader.readAsDataURL(audioBlob);
       };
 
       mediaRecorder.start();
