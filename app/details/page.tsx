@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useKioskStore } from '@/app/store/kioskStore';
+import UAEBackground from '@/app/componets/UAEBackground';
 
 export default function Details() {
   const router = useRouter();
