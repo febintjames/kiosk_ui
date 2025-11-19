@@ -53,7 +53,6 @@ export default function Details() {
 
   const handleNext = () => {
     if (validateForm()) {
-      // Save to Zustand store
       setUserDetails(formData);
       router.push('/camera');
     }
